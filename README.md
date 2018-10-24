@@ -17,4 +17,4 @@ toggle slider, but with a centered "null" or "unselected" option
 <script src="tfxScript.js">
 ```
 
-view the demoPage.html to see an implimentation of a Yes/No/NoAnswer input type
+view the [demoPage.html](https://queviva.github.io/tfxObject/demoPage.html) to see an implimentation of a Yes/No/NoAnswer input type
