@@ -1,0 +1,72 @@
+:root {
+    --main-color: #ea0;
+    --greyed-out: #888;
+    --back-color: #ffffff;
+    --holder-back: #fff;
+    --faded-txt: rgba(255, 255, 255, 0.5);
+    --trans-speed: 0.3s;
+    --samp-var: #c30;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-size: 25px;
+    font-family: 'Montserrat';
+    text-align: justify;
+    background-color: var(--back-color);
+    color: var(--main-color);
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+@media (min-width: 760px) {
+    
+    #holder {
+        position:relative;
+        margin: auto;
+        width: 100%;
+        max-width: 450px;
+        padding: 10px;
+        font-size: 20px;
+        background-color: var(--holder-back);
+    }
+
+}
+
+@media (max-width: 760px) {
+    
+    #holder {
+        position:relative;
+        margin: auto;
+        width: 100%;
+        max-width: 500px;
+        padding: 10px;
+        font-size: 20px;
+        background-color: var(--holder-back);
+    }
+    
+}
+
+.qa {
+    border: 1px solid rgba(0,0,0,0.4);
+    padding: 5px;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+.ynxDependant {
+    overflow: hidden;
+    width:100%;
+    transition: height linear var(--trans-speed);
+    font-size: 12px;
+}
+
+pre {
+    background-color: var(--greyed-out);
+    color: #fff;
+    overflow: auto;
+}

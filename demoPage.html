@@ -1,0 +1,270 @@
+<!doctype html>
+<html>
+<head><title>t|f|x toggle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="demoStyles.css">
+<link rel="stylesheet" type="text/css" href="tfxStyles.css">
+<link rel="stylesheet" type="text/css" href="ynxStyles.css">
+</head>
+<body>
+    
+    <div id="holder">
+        Some questions are better left unanswered.
+        <br><br>
+        
+        <div id="quiz00" class="qa">
+            <center style="font-size:28px"><i>
+                Do you still shop-lift alcohol, from your
+                Mom's grocery store, as much as you did in
+                high school?
+            </i></center>
+            <br>
+            <div
+             id="shopliftQ"
+             class="ynx ynx-holder"
+             data-options='{"falseColor":"var(--main-color)"}'
+            ></div>
+            
+            <div
+             class="ynxDependant"
+             data-master="shopliftQ"
+            ><br>
+                    you are a super super freak
+            </div>
+            
+            <div
+             class="ynxDependant"
+             data-master="shopliftQ"
+             data-trigger="2"
+            ><br>
+                    somehow, that's worse
+            </div>
+        </div>
+        <p>
+        That's why there's a <i>third</i> option.
+        
+        Luckily, you can create a simple true|false|null toggler for
+        all those times when choosing NOT to decide is still a choice.
+        </p>
+        <p>
+            Using some css, you can style a range input element
+            to resemble a toggle slider. By setting the min|max
+            parameters to 0 and 2, then setting the step parameter
+            to 1, the range input will snap only to the values
+            zero, one, and two.  Using css variables allows the
+            colors to change.
+        </p>
+        <p>
+            <input type="range" class="tfx tfx-slider" />
+        </p>
+        <p>
+            The tfx script will loop through and do that to all
+            input elements with the class "tfx tfx-slider"
+            <pre><code>
+&lt;input
+ type="range"
+ class="tfx tfx-slider"
+/&gt;
+            </code></pre>
+        </p>
+        <p>
+            The script allows several options, customizable
+            through the data-options paramater, aswell as
+            with styles.
+        </p>
+        <p>
+<input
+ type="range"
+ class="tfx tfx-slider"
+ style="
+    width: 250px;
+    height: 75px;
+ "
+ data-options='{
+    "value" : 2,
+    "trueColor" : "#080",
+    "falseColor" : "var(--samp-var)",
+    "disabledColor" : "rgba(200,0,0,0.1)",
+    "transSpeed" : "0.3s",
+    "step" : 1,
+    "disabled" : false
+ }'
+>
+        </p>
+        <p><pre><code>
+&lt;input
+ type="range"
+ class="tfx tfx-slider"
+ style="
+    width: 250px;
+    height: 75px;
+ "
+ data-options='{
+    "value" : 2,
+    "trueColor" : "#080",
+    "falseColor" : "var(--samp-var)",
+    "disabledColor" : "rgba(200,0,0,0.1)",
+    "transSpeed" : "0.3s",
+    "step" : 1,
+    "disabled" : false
+ }'
+&gt;
+        </code></pre></p>
+        <p>
+            Watch that data-options value; it has to be a
+            well-formated JSON string.
+            <br><br>value, disabled, transSpeed,
+            and colors can all be set from methods:
+            <br><br>
+            .setValue(int);
+            <br><br>
+            .setDisabled(boolean);
+            <br><br>
+            .setTrans(css-trans-string);
+            <br><br>
+            .setColor(nameofColor, valid-css-color-value);
+        </p>
+        <p>
+            Each of those dispatches an event.  The detail of the
+            valueSet event is the string of the value 0, 1, or 2 -
+            so that has to be parsed, or converted, if needed.
+            Every thing else dispatches whatever val got set.
+        </p>
+        <p>
+            The step parameter may be set to 2 making this a simple
+            true|false toggle, and creating this popular fiasco:
+        </p>
+        <div id="bank" class="qa" style="border:none;transition:linear 0.3s">
+<input
+ id="fiasco"
+ type="range"
+ class="tfx tfx-slider"
+ style="
+    height: 50px;
+    width: 100px;
+    float: left;
+    margin-right: 10px;
+ "
+ data-options='{
+    "step" : 2
+ }'
+/>
+<script>
+document.getElementById('fiasco').addEventListener('valueSet', e => {
+    document.getElementById('bank').style.backgroundColor = (e.detail == '2') ? '#888' : '#fff';
+    
+});
+</script>
+            <div>
+                <i style="font-size:27px;">
+                    allow auto widthdrals from bank account
+                </i>
+                <p style="font-size:12px">
+                    
+                What is this even doing? Is it <i>on</i>? Is it off?
+                Do I have to <i>de</i>select it to not un-disable it?
+                </p>
+            </div>
+        </div>
+        <p>
+            
+            Better, at least, is: label the toggles.
+        </p>
+        <div class="qa" style="background-color:#fff;">
+            
+            <center style="font-size:27px;font-style:italic">
+                would you like automatic deductions taken from
+                your bank account?
+                <br><br>
+             
+            <div
+             class="ynx ynx-holder"
+             data-options='{"value":2,"step":2}'
+             data-caps='["ok","no!"]'
+            ></div>
+            </center>
+            
+        </div>
+        <p>
+            
+            None of this is robust; there's no trying, there's no
+            catches - there's no promises. That could change at
+            some point, but probably not.
+
+        </p>
+        <p>
+            The ynxScript.js creates option labels on either side
+            of a true|false|null toggler, by converting every div
+            with the class "ynx ynx-holder" and styling them according
+            to the same data-options parameter from the t|f|x script.
+            The ynxScript.js was used for all the labelled toggles
+            on this page.
+        </p>
+        <p>
+            After creating an instance of the ynx-holder, listen to
+            its valueSet event, and respond accordingly.  This code
+            creates the example that follows.
+        </p>
+        <p>
+            <pre><code>
+&lt;div
+  id="question05"
+  class="ynx ynx-holder"
+  data-caps='["up","dn"]'
+&gt;&lt;/div&gt;
+
+&lt;div&gt;
+  database entry value:
+  &lt;i id="dbEntry05"&gt;
+    not selected
+  &lt;/i&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+     
+  document
+  .getElementById('question05')
+  .addEventListener('valueSet', e => {
+      document
+      .getElementById('dbEntry05')
+      .innerText = [
+          'upward',
+          'not selected',
+          'downward'
+      ][parseInt(e.detail,10)];
+  });
+    
+&lt;/script&gt;
+
+            </code></pre>
+        </p>
+        <div class="qa">
+            which direction would you like your
+            pizza to face when it comes out of
+            the oven?
+            <div
+             id="question05"
+             class="ynx ynx-holder"
+             data-caps='["up","dn"]'
+            ></div>
+            <br>
+            <div class="qa">
+                database entry value:
+                <i id="dbEntry05">not selected</i>
+            </div>
+        </div>
+        
+        <div style="text-align:right;font-style:italic;width:100%;">
+            <br><br><br>
+            ---pizzaface
+        </div>
+        
+    </div>
+    
+</body>
+
+<script id="ynxScript" src="ynxScript.js"></script>
+<script id="tfxScript" src="tfxScript.js"></script>
+<script id="demoScript" src="demoScript.js"></script>
+
+</html>

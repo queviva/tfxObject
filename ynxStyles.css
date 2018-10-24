@@ -1,0 +1,41 @@
+.ynx {
+    --faded-bac: #ccc;
+    --faded-txt: rgba(255, 255, 255, 0.5);
+    --greyed-out: #888;
+    --selected-col: #ea0;
+}
+
+.ynx.ynx-holder {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ynx.ynx-null, .ynx.ynx-unselected, .ynx.ynx-selected {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -webkit-touch-callout : none;
+    -moz-user-select: none;
+    -o-user-select: none;
+     user-select: none;
+    height: 30px;
+    font-size: 26px;
+    background-color: var(--greyed-out);
+    color: #fff;
+    width: 25%;
+    padding: 0px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 28px;
+    transition: background-color linear var(--trans-speed);
+}
+
+.ynx.ynx-unselected {
+    background-color: var(--faded-bac);
+    color: var(--faded-txt);
+}
+
+.ynx.ynx-selected {
+    background-color: var(--selected-col);
+    color: #fff;
+    font-style: italic;
+}
