@@ -22,20 +22,30 @@
             <div
              id="shopliftQ"
              class="ynx ynx-holder"
-             data-options='{"falseColor":"var(--main-color)"}'
+             data-options='{
+                 "falseColor" : "var(--main-color)",
+                 "returnValues" : [
+                     "yes",
+                     "n\/a",
+                     "no"
+                 ]
+             }'
             ></div>
             
             <div
+             id="ynxDep00"
              class="ynxDependant"
              data-master="shopliftQ"
+             data-trigger="yes"
             ><br>
                     you are a super super freak
             </div>
             
             <div
+             id="ynxDep11"
              class="ynxDependant"
              data-master="shopliftQ"
-             data-trigger="2"
+             data-trigger="no"
             ><br>
                     somehow, that's worse
             </div>
@@ -211,13 +221,13 @@ document.getElementById('fiasco').addEventListener('valueSet', e => {
   id="question05"
   class="ynx ynx-holder"
   data-caps='["up","dn"]'
-  data-options='[
+  data-options='{
       "returnValues" : [
           "upward",
           "not selected",
           "downward"
       ]
-  ]'
+  }'
 &gt;&lt;/div&gt;
 
 &lt;div&gt;

@@ -12,14 +12,12 @@
         // compute all the necessary values for this toggle
         let specs = [
             'ynx ' + (val === 0 ? 'ynx-selected' : val === 2 ? 'ynx-unselected' : 'ynx-null'),
-            'var(--' + (val === 1 ? 'greyed-out' : 'main-color' +')'), val,
-            'ynx ' + (val === 2 ? 'ynx-selected' : val === 0 ? 'ynx-unselected' : 'ynx-null'),
-            ['yes','n\/a','no'][val]
+            'ynx ' + (val === 2 ? 'ynx-selected' : val === 0 ? 'ynx-unselected' : 'ynx-null')
         ];
         
         // actually set all the computed values
         obj.children[0].setAttribute('class', specs[0]);
-        obj.children[2].setAttribute('class', specs[3]);
+        obj.children[2].setAttribute('class', specs[1]);
         
         // send an event to anyone who might be listening
         obj.dispatchEvent(new CustomEvent('ynx-change', { detail: val }));
@@ -38,7 +36,7 @@
             transSpeed: '0.3s',
             disabled: false,
             step: 1,
-            returnValues: ['zero','one','two']
+            returnValues: [0, 1, 2]
         };
         
         // create the necessary elements to insert in the div
@@ -83,16 +81,16 @@
         yDiv.addEventListener('click', e => {
             if (!iDiv.disabled) {
                 iDiv.setValue(0);
-                toggleYNX(obj, 0);
             }
         });
         
         iDiv.addEventListener('valueSet', e => {
-            toggleYNX(obj, parseInt(iDiv.value,10));
+            let val = parseInt(iDiv.value, 10);
+            toggleYNX(obj, val);
             obj.dispatchEvent(
                 new CustomEvent(
                     'valueSet',
-                    { detail: obj.ops.returnValues[iDiv.value] }
+                    { detail: obj.ops.returnValues[val] }
                 )
             );
         });
@@ -107,12 +105,11 @@
         nDiv.addEventListener('click', e => {
             if (!iDiv.disabled) {
                 iDiv.setValue(2);
-                toggleYNX(obj, 2);
             }
         });
         
         // add those elements to the holder
-        [yDiv,iDiv,nDiv].forEach(div => { obj.appendChild(div); });
+        [yDiv, iDiv, nDiv].forEach(div => { obj.appendChild(div); });
         
     });
     
