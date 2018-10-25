@@ -30,6 +30,8 @@
     });
     
     document.getElementById('question05').addEventListener('valueSet', e => {
+        document.getElementById('dbEntry05').innerHTML = e.detail;
+        return;
         document.getElementById('dbEntry05').innerHTML = [
             'upward',
             'not selected',

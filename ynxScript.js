@@ -28,14 +28,8 @@
     
     document.querySelectorAll("div.ynx.ynx-holder").forEach((obj, i) => {
         
-        // create the necessary elements to insert in the div
-        let
-        yDiv = document.createElement('div'),
-        iDiv = document.createElement('input'),
-        nDiv = document.createElement('div'),
-        
         // default options
-        ops = {
+        obj.ops = {
             value: 1,
             trueColor: '#ea0',
             falseColor: '#c30',
@@ -43,35 +37,41 @@
             disabledColor: '#ccc',
             transSpeed: '0.3s',
             disabled: false,
-            step: 1
+            step: 1,
+            returnValues: ['zero','one','two']
         };
         
-        let vals = obj.dataset.options ? JSON.parse(obj.dataset.options) : null;
+        // create the necessary elements to insert in the div
+        let
+        yDiv = document.createElement('div'),
+        iDiv = document.createElement('input'),
+        nDiv = document.createElement('div'),
+        
+        vals = obj.dataset.options ? JSON.parse(obj.dataset.options) : null;
         
         for (let i in vals) {
-            if (ops[i] !== undefined) {
-                ops[i] = vals[i];
+            if (obj.ops[i] !== undefined) {
+                obj.ops[i] = vals[i];
             }
         }
         
-        
-        // type the input
-        iDiv.type = 'range';
-        
-        // style the yes|no buttons
+        // style the divs
         yDiv.setAttribute('class', 'ynx ynx-null');
         iDiv.setAttribute('class', 'tfx tfx-slider');
         nDiv.setAttribute('class', 'ynx ynx-null');
         
+        // type the input
+        iDiv.type = 'range';
+        
         // set apropos values
         yDiv.innerHTML = obj.dataset.caps ? JSON.parse(obj.dataset.caps)[0] : 'yes';
         nDiv.innerHTML = obj.dataset.caps ? JSON.parse(obj.dataset.caps)[1] : 'no';
-        iDiv.setAttribute('data-options', JSON.stringify(ops));
+        iDiv.setAttribute('data-options', JSON.stringify(obj.ops));
         
         // set the options in the css
-        yDiv.style.setProperty('--selected-col', ops.trueColor);
-        nDiv.style.setProperty('--selected-col', ops.falseColor);
-        obj.style.setProperty('--trans-speed', ops.transSpeed);
+        yDiv.style.setProperty('--selected-col', obj.ops.trueColor);
+        nDiv.style.setProperty('--selected-col', obj.ops.falseColor);
+        obj.style.setProperty('--trans-speed', obj.ops.transSpeed);
         
         // give this ynx a setValue method, pass to tfx object
         obj.setValue = val => iDiv.setValue(val);
@@ -89,7 +89,12 @@
         
         iDiv.addEventListener('valueSet', e => {
             toggleYNX(obj, parseInt(iDiv.value,10));
-            obj.dispatchEvent(new CustomEvent('valueSet', { detail: iDiv.value }));
+            obj.dispatchEvent(
+                new CustomEvent(
+                    'valueSet',
+                    { detail: obj.ops.returnValues[iDiv.value] }
+                )
+            );
         });
         
         iDiv.addEventListener('disabledSet', e => {
@@ -107,7 +112,7 @@
         });
         
         // add those elements to the holder
-        [yDiv,iDiv,nDiv].forEach(x => { obj.appendChild(x); });
+        [yDiv,iDiv,nDiv].forEach(div => { obj.appendChild(div); });
         
     });
     

@@ -211,6 +211,13 @@ document.getElementById('fiasco').addEventListener('valueSet', e => {
   id="question05"
   class="ynx ynx-holder"
   data-caps='["up","dn"]'
+  data-options='[
+      "returnValues" : [
+          "upward",
+          "not selected",
+          "downward"
+      ]
+  ]'
 &gt;&lt;/div&gt;
 
 &lt;div&gt;
@@ -227,11 +234,7 @@ document.getElementById('fiasco').addEventListener('valueSet', e => {
   .addEventListener('valueSet', e => {
       document
       .getElementById('dbEntry05')
-      .innerText = [
-          'upward',
-          'not selected',
-          'downward'
-      ][parseInt(e.detail,10)];
+      .innerText = e.detail
   });
     
 &lt;/script&gt;
@@ -242,10 +245,18 @@ document.getElementById('fiasco').addEventListener('valueSet', e => {
             which direction would you like your
             pizza to face when it comes out of
             the oven?
+            <br><br>
             <div
              id="question05"
              class="ynx ynx-holder"
              data-caps='["up","dn"]'
+             data-options='{
+                "returnValues" : [
+                    "upward",
+                    "not selected",
+                    "downward"
+                ]
+             }'
             ></div>
             <br>
             <div class="qa">
