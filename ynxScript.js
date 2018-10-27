@@ -56,6 +56,7 @@
         // style the divs
         yDiv.setAttribute('class', 'ynx ynx-null');
         iDiv.setAttribute('class', 'tfx tfx-slider');
+        iDiv.style.width = '50%';
         nDiv.setAttribute('class', 'ynx ynx-null');
         
         // type the input
@@ -110,6 +111,11 @@
         
         // add those elements to the holder
         [yDiv, iDiv, nDiv].forEach(div => { obj.appendChild(div); });
+        
+        // style the caption text according to the div height
+        let h = window.getComputedStyle(yDiv).height;
+        yDiv.style.fontSize = nDiv.style.fontSize = parseInt(h, 10) - 4  + 'px';
+        yDiv.style.lineHeight = nDiv.style.lineHeight = h;
         
     });
     

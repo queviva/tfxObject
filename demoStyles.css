@@ -1,61 +1,79 @@
+
 :root {
-    --main-color: #ea0;
+    --main-color: #666;
     --greyed-out: #888;
-    --back-color: #ffffff;
-    --holder-back: #fff;
+    --back-color: #fff;
+    --holder-back: #eee;
     --faded-txt: rgba(255, 255, 255, 0.5);
     --trans-speed: 0.3s;
     --samp-var: #c30;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     padding: 0px;
     margin: 0px;
-    font-size: 25px;
-    font-family: 'Montserrat';
-    text-align: justify;
-    background-color: var(--back-color);
     color: var(--main-color);
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
-}
-
-@media (min-width: 760px) {
-    
-    #holder {
-        position:relative;
-        margin: auto;
-        width: 100%;
-        max-width: 450px;
-        padding: 10px;
-        font-size: 20px;
-        background-color: var(--holder-back);
-    }
-
-}
-
-@media (max-width: 760px) {
-    
-    #holder {
-        position:relative;
-        margin: auto;
-        width: 100%;
-        max-width: 500px;
-        padding: 10px;
-        font-size: 20px;
-        background-color: var(--holder-back);
-    }
-    
-}
-
-.qa {
-    border: 1px solid rgba(0,0,0,0.4);
-    padding: 5px;
+    background-color: var(--back-color);
+    font-size: 22px;
     text-align: justify;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
+    -epub-hyphens: auto;
     hyphens: auto;
+}
+
+#holder {
+	position: relative;
+	background-color: var(--holder-back);
+    margin: auto;
+    width: 100%;
+    max-width: 700px;
+}
+
+.qr {
+    padding: 10px;
+}
+
+.qa, .qr {
+    transition: color linear var(--trans-speed);
+}
+
+.qa:hover, .qr:hover {
+    color: #000;
+    transition: color linear var(--trans-speed);
+}
+
+.qa:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.qa > div {
+    float: left;
+    padding: 10px;
+    height: auto;
+}
+
+.qa > div:nth-child(1) {
+  width: 65%;
+}
+
+.qa > div:nth-child(2) {
+  width: 35%;
+  text-align: center;
+}
+
+@media screen and (max-width:500px) {
+	.qa > div:nth-child(1),
+	.qa > div:nth-child(2)
+	{
+    	width: 100%;
+    }
 }
 
 .ynxDependant {
@@ -67,6 +85,8 @@ body {
 
 pre {
     background-color: var(--greyed-out);
+    margin: 0px;
+    padding: 0px;
     color: #fff;
     overflow: auto;
 }

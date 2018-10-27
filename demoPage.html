@@ -2,112 +2,92 @@
 <html>
 <head><title>t|f|x toggle</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="demoStyles.css">
-<link rel="stylesheet" type="text/css" href="tfxStyles.css">
-<link rel="stylesheet" type="text/css" href="ynxStyles.css">
+<link id="luckiestFont" href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+<link id="demoStyles" rel="stylesheet" type="text/css" href="demoStyles.css">
+<link id="tfxStyles" rel="stylesheet" type="text/css" href="tfxStyles.css">
+<link id="ynxStyles" rel="stylesheet" type="text/css" href="ynxStyles.css">
 </head>
 <body>
     
-    <div id="holder">
-        Some questions are better left unanswered.
+<div id="holder">
+    <div id="shopliftQ" class="qr">
+        <i style="font-size:27px;font-family:'luckiest guy'">
+            Do you still shoplift alcohol
+            from your Mom's grocery store
+            as much as you did in high school?
+        </i>
         <br><br>
-        
-        <div id="quiz00" class="qa">
-            <center style="font-size:28px"><i>
-                Do you still shop-lift alcohol, from your
-                Mom's grocery store, as much as you did in
-                high school?
-            </i></center>
-            <br>
+        <div style="text-align:center;">
             <div
-             id="shopliftQ"
+             id="ynx01"
+             type="range"
              class="ynx ynx-holder"
-             data-options='{
-                 "falseColor" : "var(--main-color)",
-                 "returnValues" : [
-                     "yes",
-                     "n\/a",
-                     "no"
-                 ]
-             }'
+             data-options='{"falseColor" : "#ea0"}'
             ></div>
-            
-            <div
-             id="ynxDep00"
-             class="ynxDependant"
-             data-master="shopliftQ"
-             data-trigger="yes"
-            ><br>
-                    you are a super super freak
-            </div>
-            
-            <div
-             id="ynxDep11"
-             class="ynxDependant"
-             data-master="shopliftQ"
-             data-trigger="no"
-            ><br>
-                    somehow, that's worse
-            </div>
         </div>
-        <p>
-        That's why there's a <i>third</i> option.
+    </div>
+    <div id="shopQreply0" class="ynxDependant" data-master="ynx01">
+        <span style="padding:10px">
+            
+        you are a super super freak<br><br>
+        </span>
+    </div>
+    <div id="shopQreply1" class="ynxDependant" data-trigger="2" data-master="ynx01">
+        <span style="padding:10px">
+        somehow, that's worse<br><br>
+        </span>
+    </div>
+    <hr style="width:93%">
+    <div id="intro" class="qr">
+        Some questions are better left unanswered.
         
-        Luckily, you can create a simple true|false|null toggler for
-        all those times when choosing NOT to decide is still a choice.
-        </p>
-        <p>
-            Using some css, you can style a range input element
-            to resemble a toggle slider. By setting the min|max
-            parameters to 0 and 2, then setting the step parameter
-            to 1, the range input will snap only to the values
-            zero, one, and two.  Using css variables allows the
-            colors to change.
-        </p>
-        <p>
-            <input type="range" class="tfx tfx-slider" />
-        </p>
-        <p>
-            The tfx script will loop through and do that to all
-            input elements with the class "tfx tfx-slider"
-            <pre><code>
-&lt;input
+        Luckily, you can create a simple true/false/null
+        toggler for all those times when choosing NOT to
+        decide is still a choice.
+    </div>
+    <div class="qr">
+        tfxStyles.css alters the thumb, and other colors,
+        of a standard range type input to resemble a
+        common toggle swtich - by setting the min to zero,
+        the max to two, and the step to one, the slider
+        will snap only to integer values.
+    </div>
+    <div class="qr">
+       tfxScript.js handles coloring the thumb to react to 
+       its being used - getting jammed in to a pumpkin,
+       for instance, or perhaps simply sliding left and right.
+       The script and css alter all inputs of the type range 
+       with the class "tfx&nbsp;tfx-slider"
+       <br><br>
+       Without any options, this HTML produces the following
+       default slider:
+    </div>
+    <div id="defaultTFXcode" class="qa">
+        <div><pre><code>
+&lt;input 
  type="range"
  class="tfx tfx-slider"
 /&gt;
-            </code></pre>
-        </p>
-        <p>
-            The script allows several options, customizable
-            through the data-options paramater, aswell as
-            with styles.
-        </p>
-        <p>
-<input
- type="range"
- class="tfx tfx-slider"
- style="
-    width: 250px;
-    height: 75px;
- "
- data-options='{
-    "value" : 2,
-    "trueColor" : "#080",
-    "falseColor" : "var(--samp-var)",
-    "disabledColor" : "rgba(200,0,0,0.1)",
-    "transSpeed" : "0.3s",
-    "step" : 1,
-    "disabled" : false
- }'
->
-        </p>
-        <p><pre><code>
+        </code></pre></div>
+        <div>
+            <input type="range" class="tfx tfx-slider"/>
+        </div>
+    </div>
+    <div class="qr">
+        Several options, set in the data-options param,
+        allow customization of the true/false/null togglette.
+        Pronounced "tahg-luh-ZHAY".
+        Also, the script adjusts the slider and thumb 
+        to match style sizing.
+    </div>
+    <div id="customTFXcode" class="qa">
+        <div><pre><code>
 &lt;input
  type="range"
  class="tfx tfx-slider"
  style="
-    width: 250px;
-    height: 75px;
+     height: 50px;
+     width: 210px;
  "
  data-options='{
     "value" : 2,
@@ -118,174 +98,177 @@
     "step" : 1,
     "disabled" : false
  }'
-&gt;
-        </code></pre></p>
-        <p>
-            Watch that data-options value; it has to be a
-            well-formated JSON string.
-            <br><br>value, disabled, transSpeed,
-            and colors can all be set from methods:
-            <br><br>
-            .setValue(int);
-            <br><br>
-            .setDisabled(boolean);
-            <br><br>
-            .setTrans(css-trans-string);
-            <br><br>
-            .setColor(nameofColor, valid-css-color-value);
-        </p>
-        <p>
-            Each of those dispatches an event.  The detail of the
-            valueSet event is the string of the value 0, 1, or 2 -
-            so that has to be parsed, or converted, if needed.
-            Every thing else dispatches whatever val got set.
-        </p>
-        <p>
-            The step parameter may be set to 2 making this a simple
-            true|false toggle, and creating this popular fiasco:
-        </p>
-        <div id="bank" class="qa" style="border:none;transition:linear 0.3s">
+/&gt;
+        </code></pre></div>
+        <div>
 <input
- id="fiasco"
  type="range"
  class="tfx tfx-slider"
  style="
-    height: 50px;
-    width: 100px;
-    float: left;
-    margin-right: 10px;
+     height: 50px;
+     width: 210px;
  "
  data-options='{
-    "step" : 2
+    "value" : 2,
+    "trueColor" : "#080",
+    "falseColor" : "var(--samp-var)",
+    "disabledColor" : "rgba(200,0,0,0.1)",
+    "transSpeed" : "0.3s",
+    "step" : 1,
+    "disabled" : false
  }'
 />
-<script>
-document.getElementById('fiasco').addEventListener('valueSet', e => {
-    document.getElementById('bank').style.backgroundColor = (e.detail == '2') ? '#888' : '#fff';
-    
-});
-</script>
-            <div>
-                <i style="font-size:27px;">
-                    allow auto widthdrals from bank account
-                </i>
-                <p style="font-size:12px">
-                    
-                What is this even doing? Is it <i>on</i>? Is it off?
-                Do I have to <i>de</i>select it to not un-disable it?
-                </p>
-            </div>
         </div>
-        <p>
-            
-            Better, at least, is: label the toggles.
-        </p>
-        <div class="qa" style="background-color:#fff;">
-            
-            <center style="font-size:27px;font-style:italic">
-                would you like automatic deductions taken from
-                your bank account?
-                <br><br>
-             
-            <div
-             class="ynx ynx-holder"
-             data-options='{"value":2,"step":2}'
-             data-caps='["ok","no!"]'
-            ></div>
-            </center>
-            
+    </div>
+    <div class="qr">
+        Watch your head on that data-options parameter;
+        it needs to be a well-formatted JSON string 
+        <br><br>
+        The step option can be set to two, forcing the 
+        slider in to a simple true/false toggle, and 
+        allowing for this popular fiasco:
+    </div>
+    <div id="bankQ" class="qa"
+     style="transition:linear 0.3s;border:1px solid #000;">
+        <div style="text-align:center;color:#ea0;">
+        <i style="font-size:27px;">
+        allow widthdrawls from bank account    
+        </i>
         </div>
-        <p>
+        <div>
+        <input id="fiasco" type="range" class="tfx tfx-slider"
+         style="height:50px;width:100px;"
+         data-options='{"step" : 2, "value" : 2}'
+        />
+        <script>
+        let
+        bnkQ = document.getElementById('bankQ'),
+        fTog = document.getElementById('fiasco');
+        
+        fTog.addEventListener('valueSet', e => {
+            bnkQ.style.backgroundColor = fTog.value == 2 ? '#333' : '#fff';
+        });
+        
+        </script>
+        </div>
+    </div>
+    <div class="qr" style="font-size:12px">
+        what is that even doing? is it on? is it off?
+        do I have to DE-select it to make it not <i>un</i>
+        active?
+    </div>
+    <div class="qr">
+       Better is, add some labels.  The ynxStyles.css
+       and ynxScript.js create a customizable yes/no/null 
+       toglette. You look good in that toglette!
+    </div>
+    <div class="qr" style="text-align:center;transition:linear 0.3s;border:1px solid #000">
+        <i style="font-size:27px;font-family:'luckiest guy'">
+            May I remove unlimited quantities of MoNey
+            from your baNk account?
+        </i>
+        <br><br>
+        <div
+         class="ynx ynx-holder"
+         style="width:100%"
+         data-caps='["yes","no!"]'
+         data-options='{"value" : 2, "step" : 2}'
+        ></div>
+        
+    </div>
+    <div class="qr">
+        Most importantly, the ynx objects default to
+        having an unselected option, for all those
+        times you're at a loss for werds.
+    </div>
+    <div id="ynxCustomCode" class="qr">
+        <div><pre><code>
+        
+&lt;link rel="stylesheet" type="text/css" href="tfxStyles.css"&gt;
+&lt;link rel="stylesheet" type="text/css" href="ynxStyles.css"&gt;
             
-            None of this is robust; there's no trying, there's no
-            catches - there's no promises. That could change at
-            some point, but probably not.
-
-        </p>
-        <p>
-            The ynxScript.js creates option labels on either side
-            of a true|false|null toggler, by converting every div
-            with the class "ynx ynx-holder" and styling them according
-            to the same data-options parameter from the t|f|x script.
-            The ynxScript.js was used for all the labelled toggles
-            on this page.
-        </p>
-        <p>
-            After creating an instance of the ynx-holder, listen to
-            its valueSet event, and respond accordingly.  This code
-            creates the example that follows.
-        </p>
-        <p>
-            <pre><code>
 &lt;div
   id="question05"
   class="ynx ynx-holder"
-  data-caps='["up","dn"]'
+  style="
+     height:32px;
+     max-width:250px;
+  "
+  data-caps='["N","Y"]'
   data-options='{
-      "returnValues" : [
-          "upward",
-          "not selected",
-          "downward"
-      ]
+    "returnValues" : [
+        "no I have not",
+        "no answer given",
+        "I sure have!"
+    ]
   }'
 &gt;&lt;/div&gt;
-
-&lt;div&gt;
-  database entry value:
-  &lt;i id="dbEntry05"&gt;
-    not selected
-  &lt;/i&gt;
-&lt;/div&gt;
-
 &lt;script&gt;
-     
-  document
-  .getElementById('question05')
-  .addEventListener('valueSet', e => {
-      document
-      .getElementById('dbEntry05')
-      .innerText = e.detail
-  });
-    
-&lt;/script&gt;
 
-            </code></pre>
-        </p>
-        <div class="qa">
-            which direction would you like your
-            pizza to face when it comes out of
-            the oven?
-            <br><br>
-            <div
-             id="question05"
+let
+q5 = document.getElementById('question05'),
+e5 = document.getElementById('entry05');
+        
+q5.addEventListener('valueSet', e => {
+    e5.innerText = e.detail;
+});
+
+&lt;/script&gt;
+&lt;script src="ynxScript.js&gt;&lt;/script&gt;
+&lt;script src="tfxScript.js&gt;&lt;/script&gt;
+    
+        </code></pre></div>
+    </div>
+    <div id="chiroExample" class="qa" style="border:1px solid #000">
+        <div style="text-align:center">
+            <i style="font-size:27px;">have you seen a chiropractor?</i>
+        </div>
+        <div>
+            <div id="question05"
              class="ynx ynx-holder"
-             data-caps='["up","dn"]'
+             style="height:32px;max-width:250px;"
+             data-caps='["N","Y"]'
              data-options='{
-                "returnValues" : [
-                    "upward",
-                    "not selected",
-                    "downward"
-                ]
+                 "returnValues" : [
+                     "no I have not",
+                     "no answer given",
+                     "I sure have!"
+                 ],
+                 "trueColor" : "#c30",
+                 "falseColor" : "#ea0"
              }'
             ></div>
-            <br>
-            <div class="qa">
-                database entry value:
-                <i id="dbEntry05">not selected</i>
-            </div>
         </div>
-        
-        <div style="text-align:right;font-style:italic;width:100%;">
-            <br><br><br>
-            ---pizzaface
-        </div>
-        
     </div>
-    
-</body>
+    <div class="qr" style="margin-top:5px;border:1px solid #000">
+       database entry: <i id="entry05"></i> 
+    </div>
+    <script id="dbSampleScript">
+        let q5 = document.getElementById('question05'),
+            e5 = document.getElementById('entry05');
+        q5.addEventListener('valueSet', e => {
+            e5.innerText = e.detail;
+        });
+    </script>
+    <div class="qr">
+        All of the data-options values can be set using
+        calls to the tfxObject's various methods:<br><br>
+        .setValue(int)<br>
+        .setColor('nameColor', 'color');<br>
+        .setTrans('cssTransitionString');<br>
+        .iThink('youGet', 'thePicture');<br>
+    </div>
+    <div class="qr">
+        I'm not even going to dignify that with an answer!
+    </div>
+    <div class="qr" style="font-family:'luckiest guy';text-align:right;">
+        <i>~queviva</i>
+    </div>
 
+</div>
+
+</body>
 <script id="ynxScript" src="ynxScript.js"></script>
 <script id="tfxScript" src="tfxScript.js"></script>
-<script id="demoScript" src="demoScript.js"></script>
-
+<script id="gignorScript" src="demoScript.js"></script>
 </html>

@@ -2,12 +2,13 @@
     --faded-bac: #ccc;
     --faded-txt: rgba(255, 255, 255, 0.5);
     --greyed-out: #888;
-    --selected-col: #ea0;
+    --selected-col: var(--main-color);
 }
 
 .ynx.ynx-holder {
     display: flex;
-    flex-wrap: wrap;
+    max-width: 500px;
+    margin: auto;
 }
 
 .ynx.ynx-null, .ynx.ynx-unselected, .ynx.ynx-selected {
@@ -15,9 +16,10 @@
     -khtml-user-select: none;
     -webkit-touch-callout : none;
     -moz-user-select: none;
+    -ms-user-select: none;
     -o-user-select: none;
      user-select: none;
-    height: 30px;
+    height: 100%;
     font-size: 26px;
     background-color: var(--greyed-out);
     color: #fff;
@@ -25,7 +27,7 @@
     padding: 0px;
     text-align: center;
     vertical-align: middle;
-    line-height: 28px;
+    line-height: 30px;
     transition: background-color linear var(--trans-speed);
 }
 

@@ -27,8 +27,4 @@
             }, false);
     });
     
-    document.getElementById('question05').addEventListener('valueSet', e => {
-        document.getElementById('dbEntry05').innerHTML = e.detail;
-    }, false);
-    
 })();

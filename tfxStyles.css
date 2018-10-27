@@ -14,7 +14,6 @@ input.tfx.tfx-slider[type=range] {
     border-radius: var(--thumb-radius);
     display: inline-block;
     margin: 0;
-    flex: 1;
 }
 
 input.tfx.tfx-slider[type=range]::-webkit-slider-thumb {
@@ -31,7 +30,7 @@ input[type=range]::-ms-thumb {
   /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
   border: 2px solid #666;
   height: 24px;
-  width: 50px;
+  width: 50%;
   border-radius: 15px;
   background: #fff;
   cursor: pointer;
