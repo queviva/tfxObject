@@ -14,6 +14,7 @@ input.tfx.tfx-slider[type=range] {
     border-radius: var(--thumb-radius);
     display: inline-block;
     margin: 0;
+    padding: 0;
 }
 
 input.tfx.tfx-slider[type=range]::-webkit-slider-thumb {
